@@ -23,12 +23,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
-path1='model_training/saved_model/InceptionResnetV2.h5'
-model1 = tf.keras.models.load_model(path1)
-path2="model_training/saved_model/InceptionV3.h5"
-model2 = tf.keras.models.load_model(path2)
-path3="model_training/saved_model/ResNet50.h5"
-model3 = tf.keras.models.load_model(path3)
+# path1='model_training/saved_model/InceptionResnetV2.h5'
+# model1 = tf.keras.models.load_model(path1)
+# path2="model_training/saved_model/InceptionV3.h5"
+# model2 = tf.keras.models.load_model(path2)
+# path3="model_training/saved_model/ResNet50.h5"
+# model3 = tf.keras.models.load_model(path3)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():

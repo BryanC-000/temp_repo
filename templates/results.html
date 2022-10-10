@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <link rel="stylesheet" href="/static/styles.css">
+        <!-- Import pure.css -->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+            integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Google font -->
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href='path/to/your/ldbtn.min.css' />
+        <!-- Scripts-->
+        <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+        <script src="{{ url_for('static', filename='upload.js') }}"></script>
+        <meta charset=utf-8 />
+        <meta id="my-data" data-name="{{pred1}}">
+    </head>
+
+    <body>
+        <nav class="topnav">
+            <form id="homeToHome" action="/" method="POST" enctype="multipart/form-data">
+                <a onclick="document.getElementById('homeToHome').submit()">Home</a>
+            </form>
+            <form id="homeToAboutUs" action="/aboutus" method="POST" enctype="multipart/form-data">
+                <a onclick="document.getElementById('homeToAboutUs').submit()">About Us</a>
+            </form>
+            <form id="homeToAboutTheModel" action="aboutthemodel" method="POST"
+                enctype="multipart/form-data">
+                <a onclick="document.getElementById('homeToAboutTheModel').submit()">About the Models</a>
+            </form>
+        </nav>
+
+        <section class="pure-g">
+            <section class="pure-u-1-12">
+                <section class="logoLeft">
+                    <img id="cancerLogo" src="/static/images/breast_cancer_logo.png" alt="logo-removebg-preview">
+                </section>
+            </section>
+            <section class="pure-u-11-12">
+                <section class="pure-u-5-6">
+                    <header id="title">Breast Cancer Diagnosis based on Histology Image</header>
+                </section>
+                <section class="logoRight">
+                    <img  id="monashLogo"  src="/static/images/monash_logo.png" alt="Monash_logo-removebg-preview">
+                </section>
+            </section>
+        </section>
+
+        <hr>
+
+        <section class="page">
+            <section class="pure-g">
+                <section class="pure-u-1-1">
+                    <section id="results">
+                        <h1 style="font-size: 40px;">
+                            Your results:
+                        </h1>
+                        <section id="cont_benign" style="display: none">
+                            <p class="result-para">
+                                Good News! Based on our model, your image is classified as having Benign cells.
+
+                                <br> <br>
+                                A benign tumor is an abnormal but noncancerous collection of cells.
+                                If you feel a lump in your breast, your first thought may be that you have breast cancer.
+                                Fortunately, a majority of breast lumps are benign, meaning they're not cancerous.
+                                
+                                Benign (non-cancerous) breast conditions are very common, and most women have them. 
+                                In fact, most breast changes are benign. Unlike breast cancers, benign breast conditions are not life-threatening. 
+                                But some are linked with a higher risk of getting breast cancer later on.
+                                Note that both women and men can develop benign (noncancerous) breast lumps.
+
+                                To confirm your results, please book an appointment with your doctor as soon as possible.
+                            </p>
+                        </section>
+                        <section id="cont_invasive" style="display: none">
+                            <p class="result-para">
+                                Based on our model, your image is classified as having Invasive cells. 
+                                
+                                <br> <br>
+                                
+                                Unfortunately, this means that 
+                                the model has detected malignant tumor(s) from the histology image. If a tumor is found 
+                                to be malignant and is invasive, you have breast cancer or another form of cancer. 
+
+                                Invasive Carcinoma is a form of cancer that has spread from where it began in the breast to surrounding normal tissue.
+                                The most common type of invasive breast cancer is invasive ductal carcinoma, which begins in the lining of the milk ducts (thin tubes that carry milk from the lobules of the breast to the nipple). Another type is invasive lobular carcinoma, which begins in the lobules (milk glands) of the breast. Invasive breast cancer can spread through the blood and lymph systems to other parts of the body. Also called infiltrating breast cancer.
+
+                                To confirm your results and get treatment, please book an appointment with your doctor as soon as possible.
+                            </p>
+                        </section>
+                        <section id="cont_insitu" style="display: none;">
+                            <p class="result-para">
+                                Based on our model, your image is classified as having In Situ cells.
+
+                                <br> <br>
+                                
+                                In Situ Carcinoma is a condition in which abnormal cells are found in the tissues of the breast. 
+                                These abnormal cells may become cancer and spread to nearby normal tissue.
+                                In general, carcinoma in situ is the earliest form of cancer, and is considered stage 0 cancer
+                                that has not yet spread.
+    
+                                There are 2 types of breast carcinoma in situ: ductal carcinoma in situ (DCIS) and Paget disease of the nipple. DCIS is a condition in which the abnormal cells are found in the lining of a breast duct. The abnormal cells have not spread outside the duct to other tissues in the breast. Paget disease of the nipple is a condition in which abnormal cells are found in the skin cells of the nipple and may spread to the areola. Patients with Paget disease of the nipple may also have DCIS or invasive breast cancer in the same breast. Also called stage 0 breast carcinoma in situ.
+                                
+                                To confirm your results and get treatment, please book an appointment with your doctor as soon as possible.
+                            </p>
+                        </section>
+                        <section id="cont_normal" style="display: none;">
+                            <p class="result-para">
+                                Good News! Based on our model, your image is classified as having Normal cells.
+                                <br> <br>
+                                To confirm your results, please book an appointment with your doctor as soon as possible.
+                            </p>
+                        </section>
+                        <section id="cont_model1" style="display: none;">
+                            <h2>Model 1: {{pred1}}</h2>
+                        </section>
+                        <section id="cont_model2" style="display: none;">
+                            <h2>Model 2: {{pred2}}</h2>
+                        </section>
+                        <section id="cont_model3" style="display: none;">
+                            <h2>Model 3: {{pred3}}</h2>
+                        </section>
+                        <section id="cont_description" style="display: none;">
+                            <p class="result-para"><br>
+                                These are the results from all the models and can be used as
+                                reference to indicate if the histology image uploaded has cancerous cells.
+                                <br> <br> 
+                                Please also consult a doctor to verify these results.
+                            </p>
+                        </section>
+                    </section>
+                    <section class="pure-u-1-1" id="pred_btn">
+                        <form action="/" method="POST" enctype="multipart/form-data">
+                            <button class="btn" type="submit">Get Another Diagnosis</button>
+                        </form>
+                    </section>
+                </section>
+
+                <script language="javascript">
+                    var p1 = "{{ pred1 }}";
+                    var p2 = "{{ pred2 }}";
+                    var p3 = "{{ pred3 }}";
+
+                    if (p2 === "NONE" && p3 === "NONE") {
+                        if (p1 === "Benign") {
+                            document.getElementById("cont_benign").style.display = "block";
+                        } else if (p1 === "InSitu") {
+                            document.getElementById('cont_insitu').style.display = "block";
+                        } else if (p1 === "Invasive") {
+                            document.getElementById("cont_invasive").style.display = "block";
+                        } else if (p1 === "Normal") {
+                            document.getElementById("cont_normal").style.display = "block";
+                        }
+                    } else {
+                        document.getElementById("cont_model1").style.display = "block";
+                        document.getElementById("cont_model2").style.display = "block";
+                        document.getElementById("cont_model3").style.display = "block";
+                        document.getElementById("cont_description").style.display = "block";
+                    }
+                </script>
+            </section>
+        </section>
+    </body>
+
+</html>
